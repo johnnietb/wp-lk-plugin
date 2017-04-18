@@ -1,0 +1,18 @@
+ul.story-show {
+  color: transparent;
+  text-shadow: 0 0 10px #000;
+  -webkit-touch-callout: none;
+  -webkit-user-select: none;
+  -khtml-user-select: none;
+  -moz-user-select: none;
+  -ms-user-select: none;
+  user-select: none;
+}
+ul.story-show li img {
+  filter: blur(15px);
+  -webkit-filter: blur(15px);
+  -moz-filter: blur(15px);
+  -o-filter: blur(15px);
+  -ms-filter: blur(15px);
+}
+

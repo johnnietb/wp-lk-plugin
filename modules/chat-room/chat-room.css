@@ -1,0 +1,84 @@
+.chat-container {
+	height: 250px;
+	overflow: scroll;
+	overflow-x: hidden;
+	margin: 20px 0;
+	border: 1px solid #eee;
+	padding:3px 10px;
+	background:#fff;
+	border-radius: 5px;
+}
+.chat-container h4 {
+	display: block;
+	text-align: center;
+	font-size: 13px;
+	padding: 7px 0;
+	margin: 0;
+}
+.chat-container hr {
+	display: block;
+	background:none;
+	border: 0;
+	border-top: 5px solid #eee;
+	height: 1px;
+}
+.chat-container a.chat-attachment {
+	background:none;
+	border: 1px solid #4d3d50;
+	padding:3px 10px;
+	border-radius: 5px;
+	display: inline-block;
+	color:#4d3d50;
+	font-size: 11px;
+}
+.chat-sessions {
+	margin: 20px 0 0 0;
+}
+.chat-sessions a {
+	display:inline-block;
+	border: 1px solid #ddd;
+	padding:3px 10px;
+	border-radius: 5px;
+	display: inline-block;
+	color:#4d3d50;
+	font-size: 11px;
+	background: #eee;
+	margin: 0 3px;
+	cursor: pointer;
+}
+
+textarea.chat-text-entry {
+	float:left;
+	display: block;
+	width:80%;
+	height:75px;
+	border-radius: 5px 0 0 5px;
+	border: 1px solid #ddd;
+	background: #eee;
+	margin:0;
+}
+.chat-upload {
+	display: inline-block;
+	max-width:50%;
+	padding: 5px 10px;
+	border-radius: 5px;
+	border: 1px solid #ddd;
+	background: #eee;
+	margin:0;
+}
+button.chat-submit {
+	float:left;
+	display: block;
+	width:20%;
+	height:75px;
+	border-radius: 0 5px 5px 0;
+	border: 1px solid #ddd;
+	background: #4d3d50;
+	color:#fff;
+	margin:0;
+}
+.chat-helper {
+	text-align: right;
+	font-size:10px;
+	font-style:italic;
+}

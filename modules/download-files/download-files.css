@@ -1,0 +1,22 @@
+@media screen and (min-width: 680px) {
+  table.download_groups td:nth-child(1){
+    width: 30%;
+  }
+  table.download_groups td:nth-child(2){
+    width: 70%;
+  }
+}
+@media screen and (max-width: 579px) {
+  table.download_groups, table.download_groups tr, table.download_groups td, table.download_groups thead, table.download_groups tbody, table.download_groups tr, table.download_groups th {
+    width: 100%;
+    display: block;
+  }
+  table.download_groups td:nth-child(1){
+  }
+  table.download_groups td:nth-child(2){
+    border-top:0;
+  }
+}
+.button .dashicons {
+  line-height: inherit;
+}
