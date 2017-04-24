@@ -245,7 +245,7 @@ class Inzite_User_Data {
 
 						do_action( 'inzite_profile_menu' );
 
-						echo '<div class="content">';
+						echo '<div class="content test">';
 							echo '<div class="content-inner">';
 								if ($_GET['story']) {
 									$this->inzite_profile_story($current_user);
