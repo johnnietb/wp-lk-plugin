@@ -69,12 +69,11 @@ class Inzite_User_Data {
 
 	function inzite_enqueue_scripts( $post_type ) {
 		if ( is_author() || ( is_admin() && ($post_type == 'user-new.php' || $post_type == 'user-edit.php') ) ) {
-			wp_enqueue_style( 'inzite-user-styles', plugins_url( 'user-data.css', __FILE__ ) );
 			wp_enqueue_style( 'bootstrap', 'https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css');
+			wp_enqueue_style( 'inzite-user-styles', MY_PLUGIN_URL . '/css/styles.css' );
 
-			wp_enqueue_script( 'jquery' );
-			wp_enqueue_script( 'inzite-user-data', plugins_url( 'user-data.js', __FILE__ ) );
-			wp_enqueue_script( 'bootstrap', 'https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js');
+			wp_enqueue_script( 'bootstrap', 'https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js', array(), '3.3.7', true);
+			wp_enqueue_script( 'inzite-user-data', plugins_url( 'user-data.js', __FILE__ ), array(), '2.0.0', true );
 		}
 		if ( is_admin() && $post_type == 'post.php' ) {
 			wp_enqueue_style( 'inzite-story-styles', plugins_url( 'user-story.css', __FILE__ ) );
@@ -418,17 +417,19 @@ class Inzite_User_Data {
 					$id = $data->meta_id;
 					$data = unserialize($data->meta_value);
 					$key = key($data);
-					$date = $data[$key]['isl_date'];
-					
-					$story_html .= '<li 
-										class="isl_item bs-callout isl_'.$key.'"
+					if  (isset($data[$key]['isl_date'])) {
+            $date = $data[$key]['isl_date'];
+          }
+
+					$story_html .= '<li
+										class="isl-item bs-callout isl-item_type_'.$key.'"
 										data-id="'.$id.'"
 										data-type="'.$key.'"
 										data-date="'.$date.'"
 									>
 									' . $init_story->views($data) . '
 									</li>';
-					
+
 				}
 
 				$story_html .= '</ul>';
@@ -542,7 +543,7 @@ class Inzite_User_Data {
 			$init_story->form_start();
 			$init_story->forms($type, $data);
 			$init_story->form_end($type, $date, $current_user->ID, $meta_id);
-			
+
 		}
 
 	}
@@ -597,11 +598,11 @@ class Inzite_User_Data {
 							$_POST,
 							$post_id,
 							unserialize($data[0]->meta_value)
-							
+
 						);
 
 						$this->update_meta_with_id($post_id, 'life_story', $content, intval($meta_id));
-					} else {						
+					} else {
 						$content = $init_story->processForm(
 							sanitize_text_field($_POST['isl_type']),
 							$_POST,
@@ -617,15 +618,15 @@ class Inzite_User_Data {
 
 	function get_meta_with_id($post_id,$meta_key,$meta_id = null) {
 		global $wpdb;
-		
+
 		if ($meta_id)
 			$meta_id = "AND meta_id = ". $meta_id;
 
 		$result = $wpdb->get_results( $wpdb->prepare("SELECT * FROM $wpdb->postmeta WHERE post_id = %d AND meta_key = %s $meta_id ORDER BY meta_id DESC", $post_id, $meta_key));
-		
+
 		if (!empty($result))
 			return $result;
-		
+
 		return false;
 	}
 
@@ -633,7 +634,7 @@ class Inzite_User_Data {
 		update_metadata_by_mid( 'post', $meta_id, $meta_value, $meta_key);
 	}
 
-	
+
 	function inzite_get_chatrooms($user_id) {
 		if ( $user_id && $this->groups_is_active() ) {
 			global $wpdb;
