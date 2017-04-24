@@ -2,13 +2,13 @@
 /*
 Title: Foto
 Description: Tilføj foto sektion
-Category: 
+Category:
 Author: Johnnie Bertelsen
 Version: 0.1
 */
 
 Class isl_foto extends Inzite_Story_Line {
-	
+
 	public function __construct() {
 		$this->fields = array(
 			'alder' => array(
