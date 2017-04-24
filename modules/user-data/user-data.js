@@ -11,8 +11,8 @@ jQuery(document).ready( function() {
 				}
 		});
 	}
-	jQuery( '.isl_item' ).each( function() {
-		var edit_button = jQuery('<button class="edit-story">Rediger</button>');
+	jQuery( '.isl-item' ).each( function() {
+		var edit_button = jQuery('<button class="edit-story"><i class="fa fa-pencil" aria-hidden="true"></i> Rediger</button>');
 		var current_date = Date.now();
 		var isl_date = jQuery(this).data('date');
 		var date_diff = Math.abs(current_date-parseDanishDate(isl_date)) / (1000 * 60 * 60);
@@ -31,3 +31,22 @@ function parseDanishDate(s) {
   var d = s.split(/\-/);
   return Date.parse(d[2] + '-' + d[1] + '-' + d[0]);
 }
+
+
+function filterSelectFields() {
+	// Get selection Value
+	var selectionValue = $( "#type option:selected" ).val().replace("option_", "");
+	console.log(selectionValue);
+	// Hide fields not related to selection value
+	$( "p.question[class^=question_]" ).removeClass('active');
+	$( "p[class^=question_"+selectionValue+"]" ).each(function( index ) {
+  	$( this ).toggleClass('active');
+	});
+
+}
+jQuery(document).ready( function() {
+	filterSelectFields();
+	$( "#type" ).change(function() {
+		filterSelectFields();
+	});
+});
