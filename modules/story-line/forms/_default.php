@@ -2,8 +2,8 @@
 
 <?php
 foreach ($instance->fields as $id => $field) {
-	echo '<div>';
+	echo '<p '.($field['inline'] == 1 ? 'class="inline"' : '').'>';
 		$instance->input($id, $field, $data);
-	echo '</div>';
+	echo '</p>';
 };
 ?>

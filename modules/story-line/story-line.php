@@ -5,7 +5,7 @@ Class Inzite_Story_Line {
 
 	// prefix used for classes in the (i)nzite (s)tory (l)ine
 	public $classPrefix = 'isl_';
-	
+
 	// storing all the types available
 	public $types = array();
 
@@ -50,7 +50,7 @@ Class Inzite_Story_Line {
 			$returnData['isl_date'] = $date;
 
 			foreach($instance->fields as $field => $options) {
-				
+
 				if ($options['type'] == 'file') {
 					$returnData[$field] = $this->processAttachment($field, $options, $post_id, $className, $currentData);
 				} else {
@@ -65,7 +65,7 @@ Class Inzite_Story_Line {
 			return array(
 				$className => $returnData
 			);
-		}		
+		}
 	}
 
 	public function processAttachment($field, $options, $post_id, $className, $currentData) {
@@ -92,7 +92,7 @@ Class Inzite_Story_Line {
 			}
 
 		}
-		
+
 		return (isset($currentData[$className][$field])) ? $currentData[$className][$field] : '';
 	}
 
@@ -106,11 +106,11 @@ Class Inzite_Story_Line {
 			$class = $this->classPrefix . $className;
 			$instance = new $class;
 			$info = $this->types[$className];
-				
+
 			if (isset($data[$className])) {
 				$data = $data[$className];
 			}
-			
+
 			if ( file_exists(dirname( __FILE__ ) . '/forms/' . $className . '.php') ) {
 				require_once(dirname( __FILE__ ) . '/forms/' . $className . '.php');
 			} else {
@@ -125,19 +125,19 @@ Class Inzite_Story_Line {
 			if (isset($this->types[$className])) {
 				$class = $this->classPrefix . $className;
 				$instance = new $class;
-			
+
 				// available commands from the templates
 				$date = $data[$className]['isl_date'];
 				unset($data[$className]['isl_date']);
-				
+
 				$data = $data[$className];
 				$info = $this->types[$className];
 				$fields = $instance->fields;
-				
-				
+
+
 
 				ob_start();
-				if ( file_exists(dirname( __FILE__ ) . '/views/' . $className . '.php') ) {					
+				if ( file_exists(dirname( __FILE__ ) . '/views/' . $className . '.php') ) {
     				require(dirname( __FILE__ ) . '/views/' . $className . '.php');
 				} else {
 					require(dirname( __FILE__ ) . '/views/_default.php');
@@ -152,17 +152,17 @@ Class Inzite_Story_Line {
 	public function input(string $id, array $field, $data = array()) {
 		if (!empty($field['type'])) {
 
-			if (!empty($field['title'])) 
+			if (!empty($field['title']))
 				echo '<label for="'. $id .'">' . $field['title']; echo '</label>';
 
 			$placeholder = '';
-			if (!empty($field['placeholder'])) 
+			if (!empty($field['placeholder']))
 				$placeholder = $field['placeholder'];
 
 			$value = '';
 			if (!empty($data))
 				$value = $data[$id];
-			
+
 			switch ($field['type']) {
 				case 'editor': //tinymce
 					$editor_settings =  array(
@@ -180,8 +180,19 @@ Class Inzite_Story_Line {
 					echo '<input id="' . $id . '" name="' . $id . '" type="' . $field['type'] . '" placeholder="' . $placeholder . '" value="' . $value . '">';
 					break;
 
+				case 'select': //password
+					echo '<select id="' . $id . '" name="' . $id . '">';
+					foreach ($field['options'] as $key => $label) {
+						if ($value == $key) {
+							echo '<option value="'.$key.'" selected>'.$label.'</option>';
+						}
+						echo '<option value="'.$key.'">'.$label.'</option>';
+					}
+					echo '</select>';
+					break;
+
 				case 'file': //file
-					if ($value) 
+					if ($value)
 						echo '<p><img src="' . $value . '"></p>';
 					echo '<input id="' . $id . '" name="' . $id . '" type="file" placeholder="' . $placeholder . '" value="' . $value . '">';
 					break;
@@ -194,7 +205,7 @@ Class Inzite_Story_Line {
 					echo '<input id="' . $id . '" name="' . $id . '" type="text" placeholder="' . $placeholder . '" value="' . $value . '">';
 					break;
 			}
-			
+
 		}
 	}
 
@@ -224,7 +235,7 @@ Class Inzite_Story_Line {
 		}
 
 		ksort($story_types);
-		
+
 		echo '<div class="dropdown" role="menu">';
 			if ($add) {
 				echo '<button class="btn btn-primary dropdown-toggle" type="button" data-toggle="dropdown">Tilføj sektion<span class="caret"></span></button>';
@@ -247,7 +258,7 @@ Class Inzite_Story_Line {
 					}
 
 				}
-				
+
 				echo '</ul>';
 				echo '<a href="?pdf=download" target="_blank" class="button btn-success">Gem som PDF</a>';
 			} else {

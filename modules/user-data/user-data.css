@@ -8,10 +8,10 @@
   background: #fff;
   margin: 1.3em 0;
 }
-button.user_passchange {
+.user_passchange {
   margin:1.3em 0;
 }
-input[type="submit"].story-submit {
+.story-submit {
 	display: block;
 	height:75px;
   width: 100%;
@@ -36,12 +36,12 @@ ul.story-show {
   list-style: none;
   border-radius: 5px;
 }
-ul.story-show li.isl_item {
+ul.story-show li.isl-item {
   /*border-top:1px solid #eee;*/
   padding: 10px 10px;
   position: relative;
 }
-ul.story-show li.isl_item {
+ul.story-show li.isl-item {
   display: table;
   content: '';
   clear: both;
@@ -55,20 +55,20 @@ ul.story-show li:first-child {
   border-top:0;
 }
 
-ul.story-show li.isl_item h2, ul.story-show li.isl_item date {
+ul.story-show li.isl-item h2, ul.story-show li.isl-item date {
   display: inline-block;
   margin: 0 10px 0 0;
 }
 
-ul.story-show li.isl_item h3 {
+ul.story-show li.isl-item h3 {
   margin-top:0;
 }
 
-ul.story-show li.isl_item h3 {
+ul.story-show li.isl-item h3 {
   margin-top:0;
 }
 
-ul.story-show li.isl_item .foto img {
+ul.story-show li.isl-item .foto img {
   float:left;
   max-width: 300px;
   margin: 0 10px 0 0;
@@ -96,7 +96,6 @@ button.edit-story {
 	background:#fff;
 	border-radius: 5px 5px 0 0;
 }
-
 
 .bs-callout {
     padding: 20px;
