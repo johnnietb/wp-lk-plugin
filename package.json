@@ -1,0 +1,27 @@
+{
+  "name": "wp-lk-plugin",
+  "version": "2.0.0",
+  "description": "Create story line items within: _wp-lk-plugin/modules/story-line/_",
+  "main": "gulpfile.js",
+  "dependencies": {
+    "gulp": "^3.9.1",
+    "gulp-sass": "^3.1.0"
+  },
+  "devDependencies": {
+    "gulp-autoprefixer": "^3.1.1",
+    "gulp-sass": "^3.1.0"
+  },
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/johnnietb/wp-lk-plugin.git"
+  },
+  "author": "Johnnie Bertelsen",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/johnnietb/wp-lk-plugin/issues"
+  },
+  "homepage": "https://github.com/johnnietb/wp-lk-plugin#readme"
+}

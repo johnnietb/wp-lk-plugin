@@ -1,0 +1,198 @@
+.story-show {
+  /*border:1px solid #eee;*/
+  padding: 10px 0;
+  list-style: none;
+  border-radius: 5px;
+
+  .isl-item {
+    position: relative;
+    //display: table;
+    //content: '';
+    //clear: both;
+    width: 100%;
+    position: relative;
+
+    padding: 2rem;
+    margin: 20px 0;
+    border: 1px solid #eee;
+    border-left-width: 5px;
+    border-radius: 3px;
+    + .isl-item {
+      margin-top: -5px;
+    }
+    &__title-line {
+      display: flex;
+      align-items: baseline;
+      margin-bottom: 1rem;
+
+      date {
+        margin: 0 0 0 1rem;
+        font-weight: 700;
+        opacity: .4;
+      }
+      @media (max-width:480px) {
+        flex-wrap: wrap;
+        date {
+          margin: 1rem 0 0 0;
+        }
+        .isl-item__title,
+        date {
+          flex: 0 0 100%;
+        }
+      }
+    }
+    .isl-item__title {
+      font-size: 1.25em;
+      margin: 0;
+    }
+    .isl-item__subtitle {
+      font-size: 1.25em;
+      font-weight: 700;
+      margin: 0 0 2rem 0;
+    }
+    .content,
+    &__content {
+      width: 100%;
+      margin-right: 6rem;
+      @media (max-width:720px) {
+        margin-right: 0;
+      }
+    }
+    .answer {
+      font-weight: 700;
+      opacity: .5;
+    }
+    &_type_foto {
+      border-left-color: #c0413b;
+      .isl-item__title {
+        color: #c0413b;
+      }
+      .photo {
+        margin-right: 2rem;
+      }
+      .isl-item__content {
+        display: flex;
+        @media (max-width:600px) {
+          flex-direction: column;
+        }
+      }
+
+    }
+    &_type_dagbog {
+      border-left-color: #0178c0;
+      .isl-item__title {
+        color: #0178c0;
+      }
+      img {
+        float: left;
+        max-width: 300px;
+        margin: 0 10px 0 0;
+      }
+    }
+
+    &_type_egenvurdering {
+      border-left-color: #7b40cf;
+
+      .isl-item__title {
+        color: #7b40cf;
+      }
+      .title {
+        flex: 0 0 15rem;
+        @media (max-width:600px) {
+          flex: 0 0 100%;
+          text-align: left;
+        }
+        text-align: right;
+        padding-right: 1rem;
+      }
+      .isl-item__content {
+        display: flex;
+        @media (max-width:600px) {
+          flex-wrap: wrap;
+        }
+      }
+      .progress {
+        width: 100%;
+        height: 2rem;
+        .progress-bar {
+          background-color: #7b40cf;
+          display: flex;
+          justify-content: flex-end;
+          align-items: center;
+          padding-right: 1rem;
+        }
+      }
+    }
+
+    &_type_livslinje {
+      border-left-color: #f5ad00;
+      .isl-item__title {
+        color: #f5ad00;
+      }
+    }
+
+    &_type_personbeskrivelse {
+      border-left-color: #00cc01;
+      .isl-item__title {
+        color: #00cc01;
+      }
+    }
+
+    p {
+      margin: 0 0 1em;
+    }
+
+
+  }
+  .edit-story {
+    position: absolute;
+    right: 5px;
+    top: 5px;
+    background: none;
+    border: none;
+    opacity: .4;
+    font-weight: 700;
+
+    &:hover {
+      opacity: 1;
+    }
+  }
+}
+
+
+
+
+.bs-callout-primary {
+  border-left-color: #428bca;
+  h4 {
+    color: #428bca;
+  }
+}
+
+.bs-callout-success {
+  border-left-color: #5cb85c;
+  h4 {
+    color: #5cb85c;
+  }
+}
+
+.bs-callout-danger {
+  border-left-color: #d9534f;
+  h4 {
+    color: #d9534f;
+  }
+}
+
+.bs-callout-warning {
+  border-left-color: #f0ad4e;
+  h4 {
+    color: #f0ad4e;
+  }
+}
+
+.bs-callout-info {
+  border-left-color: #5bc0de;
+  h4 {
+    color: #5bc0de;
+  }
+}
