@@ -1,5 +1,5 @@
 <div class="isl-item__title-line">
-	<h2 class="isl-item__title">Egenvourdering</h2>
+	<h2 class="isl-item__title">Egenvurdering</h2>
 	<date><?php echo $date; ?></date>
 </div>
 

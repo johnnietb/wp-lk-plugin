@@ -77,7 +77,7 @@ Class Inzite_Chat {
 
 	function enqueue_scripts() {
 		global $post;
-		if ( $post->post_type != 'inzite-chat' )
+		if ( empty($post->post_type) || $post->post_type != 'inzite-chat' )
 			return;
 		wp_enqueue_script( 'jquery' );
 		wp_enqueue_script( 'inzite-chat', plugins_url( 'chat-room.js', __FILE__ ) );

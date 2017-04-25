@@ -336,7 +336,7 @@ class Inzite_User_Data {
 
 						echo '<div class="content">';
 							echo '<div class="content-inner">';
-								if ($_GET['story']) {
+								if (isset($_GET['story'])) {
 									if ($current_user->ID == $user_parent) {
 										echo '<h2>' . $user_data->data->display_name . '\'s livshistorie</h2>';
 										$this->inzite_profile_story($user_data->data, 0);
@@ -344,32 +344,32 @@ class Inzite_User_Data {
 										echo '<h2>Din egen livshistorie</h2>';
 										$this->inzite_profile_story($current_user, 1);
 									}
-								} else if ($_GET['update']) {
+								} else if (isset($_GET['update'])) {
 									if ($current_user->ID == $user_parent) {
 										echo '<h2>' . $user_data->data->display_name . '\'s livshistorie</h2>';
 										$this->inzite_profile_story_form(
 											$user_data->data,
-											sanitize_text_field($_GET['date']),
-											sanitize_text_field($_GET['id']),
-											sanitize_text_field($_GET['type']),
+											sanitize_text_field((isset($_GET['date'])) ? $_GET['date'] : ''),
+											sanitize_text_field((isset($_GET['id'])) ? $_GET['id'] : ''),
+											sanitize_text_field((isset($_GET['type'])) ? $_GET['type'] : ''),
 											0
 										);
 									} else {
 										$this->inzite_profile_story_form(
 											$current_user,
-											sanitize_text_field($_GET['date']),
-											sanitize_text_field($_GET['id']),
-											sanitize_text_field($_GET['type']),
+											sanitize_text_field((isset($_GET['date'])) ? $_GET['date'] : ''),
+											sanitize_text_field((isset($_GET['id'])) ? $_GET['id'] : ''),
+											sanitize_text_field((isset($_GET['type'])) ? $_GET['type'] : ''),
 											1
 										);
 									}
-								} else if ($_GET['chats']) {
+								} else if (isset($_GET['chats'])) {
 									$this->inzite_profile_chats($current_user);
-								} else if ($_GET['users'] && $user_is_parent > 0) {
+								} else if (isset($_GET['users']) && $user_is_parent > 0) {
 									$this->inzite_profile_users($current_user, $user_is_parent);
-								} else if ($_GET['edit']) {
+								} else if (isset($_GET['edit'])) {
 									$this->inzite_profile_form($user_data, $current_user);
-								} else if ($_GET['add']) {
+								} else if (isset($_GET['add'])) {
 									$this->inzite_profile_form(array(), $current_user, $user_is_parent);
 								} else {
 									$this->inzite_profile_data($user_data);
@@ -526,7 +526,7 @@ class Inzite_User_Data {
 				);
 			}
 
-			if ($story_data) {
+			if (!empty($story_data)) {
 				$story_data = $story_data[0];
 				$data = unserialize($story_data->meta_value);
 
