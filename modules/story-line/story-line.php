@@ -149,7 +149,7 @@ Class Inzite_Story_Line {
 		}
 	}
 
-	public function input(string $id, array $field, $data = array()) {
+	public function input($id, array $field, $data = array()) {
 		if (!empty($field['type'])) {
 
 			if (!empty($field['title']))

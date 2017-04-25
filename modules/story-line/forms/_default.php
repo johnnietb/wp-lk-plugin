@@ -2,7 +2,7 @@
 
 <?php
 foreach ($instance->fields as $id => $field) {
-	echo '<p '.($field['inline'] == 1 ? 'class="inline"' : '').'>';
+	echo '<p '.(isset($field['inline']) && $field['inline'] == 1 ? 'class="inline"' : '').'>';
 		$instance->input($id, $field, $data);
 	echo '</p>';
 };
