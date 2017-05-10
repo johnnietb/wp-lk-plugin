@@ -299,12 +299,17 @@ Class Inzite_Chat {
 
 	function the_content_filter( $content ) {
 		global $post;
+		if ( !in_the_loop() ) 
+			return $content;
+
 		if ( $post->post_type != 'inzite-chat' )
 			return $content;
+
 		if ( ! is_user_logged_in() )  {
 			echo 'Du har ikke rettigheder til at se denne side.';
 			return;
 		}
+		
 		$this->maybe_create_chatroom_log_file( '' , $post);
 
 		$chat_dates = get_post_meta( $post->ID , 'chat_dates' , true );
