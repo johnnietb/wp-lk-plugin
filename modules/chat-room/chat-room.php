@@ -49,11 +49,11 @@ Class Inzite_Chat {
 			'menu_name' => __( 'Chat Rum', 'chatroom' )
 		);
 		$rewrite = array(
-		'slug'                  => 'chat',
-		'with_front'            => true,
-		'pages'                 => true,
-		'feeds'                 => true,
-	);
+			'slug'                  => 'chat',
+			'with_front'            => true,
+			'pages'                 => true,
+			'feeds'                 => true,
+		);
 		$args = array(
 			'labels' => $labels,
 			'public' => true,
