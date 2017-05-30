@@ -11,11 +11,6 @@ Class isl_personbeskrivelse extends Inzite_Story_Line {
 
 	public function __construct() {
 		$this->fields = array(
-			'beskrivelse' => array(
-				'type' => 'text',
-				'title' => 'Min',
-				'placeholder' => '',
-			),
 			'sex' => array(
 				'type' => 'select',
 				'title' => 'Personens køn',
@@ -25,10 +20,19 @@ Class isl_personbeskrivelse extends Inzite_Story_Line {
 					'Kvinde',
 				),
 			),
+			'beskrivelse' => array(
+				'type' => 'text',
+				'title' => 'Min',
+				'placeholder' => '',
+				'inline' => true
+			),
 			'age' => array(
 				'type' => 'number',
-				'title' => 'Alder',
+				'title' => 'Han/hun er',
+				'text_after' => ' år gammel.',
 				'placeholder' => 'Skriv alder i år.',
+				'min' => '0',
+				'max' => '120',
 				'inline' => true
 			),
 			'bor_i' => array(

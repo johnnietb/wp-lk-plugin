@@ -257,3 +257,6 @@ form p.inline {
 
 [type="number"] {
   max-width: 10rem; }
+
+.text_after {
+  margin-left: .5em; }

@@ -12,7 +12,7 @@ Class isl_dagbog extends Inzite_Story_Line {
 	public function __construct() {
 		$this->fields = array(
 			'content' => array(
-				'type' => 'editor',
+				'type' => 'textarea',
 				'title' => 'Indhold',
 				'placeholder' => 'Skriv din tekst her'
 			)

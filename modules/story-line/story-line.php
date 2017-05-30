@@ -176,14 +176,14 @@ Class Inzite_Story_Line {
 
 				case 'email': //email
 				case 'number': //number
-					echo '<input id="' . $id . '" class="form-control" name="' . $id . '" type="number" placeholder="Nummer fra 1-10" value="' . $value . '" min="' . $field['min'] . '" max="' . $field['max'] . '">';
+					echo '<input id="' . $id . '" class="form-control" name="' . $id . '" type="number" placeholder="' . $placeholder . '" value="' . $value . '" min="' . $field['min'] . '" max="' . $field['max'] . '">';
 					break;
 				case 'password': //password
-					echo '<input id="' . $id . '" name="' . $id . '" type="' . $field['type'] . '" placeholder="' . $placeholder . '" value="' . $value . '">';
+					echo '<input id="' . $id . '" class="form-control" name="' . $id . '" type="' . $field['type'] . '" placeholder="' . $placeholder . '" value="' . $value . '">';
 					break;
 
 				case 'select': //password
-					echo '<select id="' . $id . '" name="' . $id . '">';
+					echo '<select id="' . $id . '" class="form-control" name="' . $id . '">';
 					foreach ($field['options'] as $key => $label) {
 						if ($value == $key) {
 							echo '<option value="'.$key.'" selected>'.$label.'</option>';
@@ -201,13 +201,16 @@ Class Inzite_Story_Line {
 					break;
 
 				case 'textarea':
-					echo '<textarea id="' . $id . '" name="' . $id . '" placeholder="' . $placeholder . '">' . $value . '</textarea>';
+					echo '<textarea id="' . $id . '" class="form-control" name="' . $id . '" placeholder="' . $placeholder . '">' . $value . '</textarea>';
 					break;
 
 				default: //text
-					echo '<input id="' . $id . '" name="' . $id . '" type="text" placeholder="' . $placeholder . '" value="' . $value . '">';
+					echo '<input id="' . $id . '" class="form-control" name="' . $id . '" type="text" placeholder="' . $placeholder . '" value="' . $value . '">';
 					break;
 			}
+
+			if (!empty($field['text_after']))
+				echo '<label class="control-label text_after">' . $field['text_after']; echo '</label>';
 
 		}
 	}

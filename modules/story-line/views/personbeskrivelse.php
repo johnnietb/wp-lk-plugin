@@ -12,13 +12,28 @@
 				<?php if ( $id == 'beskrivelse' ) {
 					echo '<h3 class="isl-item__subtitle">' . $fields[$id]['title'] . ' ' . $field . '</h3>';
 				} elseif( $id == 'age' ) {
-					echo '<p>Han er <span class="answer">' . $field . '</span> år gammel</p>';
+					if ($data['sex'] == 1) {
+						echo '<p>Hun er <span class="answer">' . $field . '</span> år gammel</p>';						
+					} else {
+						echo '<p>Han er <span class="answer">' . $field . '</span> år gammel</p>';
+					}
 				} elseif( $id == 'kan_lide_mig' || $id == 'hader_mig' || $id == 'ligner' || $id == 'sidst_set' ) {
 
 					if (!empty($fields[$id]['title']))
 					{
 						echo '<p>';
-						echo $fields[$id]['title'];
+						if ($data['sex'] == 1) {
+							$title = $fields[$id]['title'];
+							$title = str_replace("ham", "hende", $title);
+							$title = str_replace("Ham", "Hende", $title);
+							$title = str_replace("han", "hun", $title);
+							$title = str_replace("Han", "Hun", $title);
+							$title = str_replace("hans", "hendes", $title);
+							$title = str_replace("Hans", "Hendes", $title);
+							echo $title;
+						} else {
+							echo $fields[$id]['title'];
+						}
 						echo '</p>';
 					};
 					echo '<p><span class="answer"> ' . $field . '</span></p>';
@@ -26,7 +41,18 @@
 					echo '<p>';
 					if (!empty($fields[$id]['title']))
 					{
-						echo $fields[$id]['title'];
+						if ($data['sex'] == 1) {
+							$title = $fields[$id]['title'];
+							$title = str_replace("ham", "hende", $title);
+							$title = str_replace("Ham", "Hende", $title);
+							$title = str_replace("hans", "hendes", $title);
+							$title = str_replace("Hans", "Hendes", $title);
+							$title = str_replace("han", "hun", $title);
+							$title = str_replace("Han", "Hun", $title);
+							echo $title;
+						} else {
+							echo $fields[$id]['title'];
+						}
 					};
 					echo '<span class="answer"> ' . $field . '</span></p>';
 				}
