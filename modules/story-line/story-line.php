@@ -187,8 +187,9 @@ Class Inzite_Story_Line {
 					foreach ($field['options'] as $key => $label) {
 						if ($value == $key) {
 							echo '<option value="'.$key.'" selected>'.$label.'</option>';
+						} else {
+							echo '<option value="'.$key.'">'.$label.'</option>';
 						}
-						echo '<option value="'.$key.'">'.$label.'</option>';
 					}
 					echo '</select>';
 					break;
