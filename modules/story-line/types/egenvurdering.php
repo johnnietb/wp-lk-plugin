@@ -17,7 +17,7 @@ Class isl_egenvurdering extends Inzite_Story_Line {
 				'placeholder' => '',
 				'options' => array(
 					'option_1' => '1. Hvad er jeg god til, og hvad er jeg ikke så god til?',
-					'option_2' => '2. Hvordan klarer jeg tingene før sammenlignet med nu?',
+					'option_2' => '2. Hvordan klarer jeg tingene nu?',
 					'option_3' => '3. Mit syn på mig selv.',
 					'option_4' => '4. Mit syn på vores familie og vores vaner.',
 				)
@@ -202,6 +202,37 @@ Class isl_egenvurdering extends Inzite_Story_Line {
 				'min' => '1',
 				'max' => '10',
 				'title' => 'Hvor godt sover jeg om natten?',
+				'placeholder' => '',
+			),
+			'question_4_1' => array(
+				'type' => 'text',
+				'title' => 'Hvad laver vi, når vi hygger os sammen?',
+				'placeholder' => '',
+			),
+			'question_4_2' => array(
+				'type' => 'text',
+				'title' => 'Hvad laver vi, når vi har det sjovt sammen?',
+				'placeholder' => '',
+			),
+			'question_4_3' => array(
+				'type' => 'text',
+				'title' => 'Hvad kan vi let blive uenige om / komme til at skændes over?',
+				'placeholder' => '',
+			),
+			'question_4_4' => array(
+				'type' => 'text',
+				'title' => 'Hvad kan vi lide at snakke om?',
+				'placeholder' => '',
+			),
+			'question_4_5' => array(
+				'type' => 'text',
+				'title' => 'Hvad taler vi aldrig om? - familiens tabu',
+				'placeholder' => '',
+			),
+			'question_4_6' => array(
+				'type' => 'textarea',
+				'title' => 'Beskriv dine familiemedlemmer. Hvad kendetegner dem hver især?',
+				'help_text' => 'Du kan måske finde inspiration i følgende ord: Temperamentsfuld, hjælpsom, hurtig, fornuftig, humoristisk, bestemmende, vidende, ufornuftig, sjov, fantasifuld, kedelig, iderig, langsom.',
 				'placeholder' => '',
 			),
 		);

@@ -38,8 +38,8 @@ function filterSelectFields() {
 	var selectionValue = $( "#type option:selected" ).val().replace("option_", "");
 	console.log(selectionValue);
 	// Hide fields not related to selection value
-	$( "p.question[class^=question_]" ).removeClass('active');
-	$( "p[class^=question_"+selectionValue+"]" ).each(function( index ) {
+	$( "div.question[class^=question_]" ).removeClass('active');
+	$( "div[class^=question_"+selectionValue+"]" ).each(function( index ) {
   	$( this ).toggleClass('active');
 	});
 

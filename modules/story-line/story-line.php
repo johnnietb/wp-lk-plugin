@@ -159,6 +159,10 @@ Class Inzite_Story_Line {
 			if (!empty($field['placeholder']))
 				$placeholder = $field['placeholder'];
 
+			$help_text = '';
+			if (!empty($field['help_text']))
+				$help_text = $field['help_text'];
+
 			$value = '';
 			if (!empty($data))
 				$value = $data[$id];
@@ -212,6 +216,9 @@ Class Inzite_Story_Line {
 			if (!empty($field['text_after']))
 				echo '<label class="control-label text_after">' . $field['text_after']; echo '</label>';
 
+			if ($help_text != '')
+				echo '<p class="help-block">' . $help_text . '</p>';
+
 		}
 	}
 
@@ -220,7 +227,7 @@ Class Inzite_Story_Line {
 	}
 
 	public function form_end($type, $date, $userId, $metaId) {
-		echo '<div class="submit"><input type="submit" class="story-submit" value="Gem / tilføj" /></div>';
+		echo '<div class="submit form-group"><input type="submit" class="btn btn-primary btn-lg" value="Gem / tilføj" /></div>';
 		echo '<input type="hidden" name="isl_action" value="inzite-update-story">';
 		echo '<input type="hidden" name="isl_type" value="' . $type . '">';
 		echo '<input type="hidden" name="isl_date" value="' . $date . '">';
