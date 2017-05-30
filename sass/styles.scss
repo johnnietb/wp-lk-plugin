@@ -122,3 +122,7 @@ form p.inline {
     display: block;
   }
 }
+
+[type="number"] {
+	max-width: 10rem;
+}

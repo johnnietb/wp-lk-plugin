@@ -153,7 +153,7 @@ Class Inzite_Story_Line {
 		if (!empty($field['type'])) {
 
 			if (!empty($field['title']))
-				echo '<label for="'. $id .'">' . $field['title']; echo '</label>';
+				echo '<label for="'. $id .'" class="control-label">' . $field['title']; echo '</label>';
 
 			$placeholder = '';
 			if (!empty($field['placeholder']))
@@ -176,6 +176,8 @@ Class Inzite_Story_Line {
 
 				case 'email': //email
 				case 'number': //number
+					echo '<input id="' . $id . '" class="form-control" name="' . $id . '" type="number" placeholder="Nummer fra 1-10" value="' . $value . '" min="' . $field['min'] . '" max="' . $field['max'] . '">';
+					break;
 				case 'password': //password
 					echo '<input id="' . $id . '" name="' . $id . '" type="' . $field['type'] . '" placeholder="' . $placeholder . '" value="' . $value . '">';
 					break;
@@ -210,7 +212,7 @@ Class Inzite_Story_Line {
 	}
 
 	public function form_start() {
-		echo '<form action="?story=show" method="POST" enctype="multipart/form-data">';
+		echo '<form action="?story=show" method="POST" enctype="multipart/form-data" class="storyline-form">';
 	}
 
 	public function form_end($type, $date, $userId, $metaId) {
