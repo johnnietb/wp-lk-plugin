@@ -18,6 +18,7 @@ Class isl_fototur extends Inzite_Story_Line {
 			),
 			'hukommelse' => array(
 				'type' => 'textarea',
+				'rows' => 5,
 				'title' => 'Oplevelsen ved at gense stedet, og følelsen jeg mærkede kan beskrives sådan her:',
 				'placeholder' => ''
 			),
@@ -28,6 +29,7 @@ Class isl_fototur extends Inzite_Story_Line {
 			),
 			'sammen_med' => array(
 				'type' => 'textarea',
+				'rows' => 5,
 				'title' => 'Dem jeg var meget sammen med dengang:',
 				'placeholder' => ''
 			),

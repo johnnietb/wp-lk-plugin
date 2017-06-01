@@ -234,6 +234,7 @@ Class isl_egenvurdering extends Inzite_Story_Line {
 				'title' => 'Beskriv dine familiemedlemmer. Hvad kendetegner dem hver især?',
 				'help_text' => 'Du kan måske finde inspiration i følgende ord: Temperamentsfuld, hjælpsom, hurtig, fornuftig, humoristisk, bestemmende, vidende, ufornuftig, sjov, fantasifuld, kedelig, iderig, langsom.',
 				'placeholder' => '',
+				'rows' => 8
 			),
 		);
 	}

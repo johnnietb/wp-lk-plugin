@@ -85,21 +85,25 @@ Class isl_personbeskrivelse extends Inzite_Story_Line {
 			),
 			'kan_lide_mig' => array(
 				'type' => 'textarea',
+				'rows' => 5,
 				'title' => 'Det kan jeg lide ham for',
 				'placeholder' => '',
 			),
 			'hader_mig' => array(
 				'type' => 'textarea',
+				'rows' => 5,
 				'title' => 'Det bryder jeg mig ikke om ved ham',
 				'placeholder' => '',
 			),
 			'ligner' => array(
 				'type' => 'textarea',
+				'rows' => 5,
 				'title' => 'Vores liv har lignet hinanden på flg. områder',
 				'placeholder' => '',
 			),
 			'sidst_set' => array(
 				'type' => 'textarea',
+				'rows' => 5,
 				'title' => 'Sidst jeg var sammen med ham',
 				'placeholder' => '',
 			),

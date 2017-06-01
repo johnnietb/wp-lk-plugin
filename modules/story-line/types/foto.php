@@ -23,12 +23,14 @@ Class isl_foto extends Inzite_Story_Line {
 			'fordi' => array(
 				'type' => 'textarea',
 				'title' => 'Billedet er taget da:',
-				'placeholder' => ''
+				'placeholder' => '',
+				'rows' => 8
 			),
 			'husker' => array(
 				'type' => 'textarea',
 				'title' => 'Jeg husker følgende fra den tid:',
-				'placeholder' => ''
+				'placeholder' => '',
+				'rows' => 8
 			),
 			'foto' => array(
 				'type' => 'file',
