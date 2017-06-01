@@ -1,5 +1,5 @@
 <div class="isl-item__title-line">
-	<h2 class="isl-item__title">Foto</h2>
+	<h2 class="isl-item__title">Historisk foto</h2>
 	<date><?php echo $date; ?></date>
 </div>
 
@@ -13,7 +13,7 @@
 
 		<div class="caption">
 			<p>
-				Billedet er taget da jeg var ca. <span class="answer"><?php echo $data['alder']; ?></span> og er taget da:
+				Billedet er taget da jeg var ca. <span class="answer"><?php echo $data['age']; ?> år gammel</span> og er taget da:
 			</p>
 
 			<p>
