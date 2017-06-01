@@ -205,7 +205,7 @@ Class Inzite_Story_Line {
 					break;
 
 				case 'textarea':
-					echo '<textarea id="' . $id . '" class="form-control" name="' . $id . '" placeholder="' . $placeholder . '">' . $value . '</textarea>';
+					echo '<textarea id="' . $id . '" class="form-control" name="' . $id . '" placeholder="' . $placeholder . '" rows="'.$field['rows'].'">' . $value . '</textarea>';
 					break;
 
 				default: //text
