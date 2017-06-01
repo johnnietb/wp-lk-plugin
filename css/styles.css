@@ -50,17 +50,19 @@
     .story-show .isl-item .answer {
       font-weight: 700;
       opacity: .5; }
-    .story-show .isl-item_type_foto {
+    .story-show .isl-item_type_foto, .story-show .isl-item_type_fototur {
       border-left-color: #c0413b; }
-      .story-show .isl-item_type_foto .isl-item__title {
+      .story-show .isl-item_type_foto .isl-item__title, .story-show .isl-item_type_fototur .isl-item__title {
         color: #c0413b; }
-      .story-show .isl-item_type_foto .photo {
-        margin-right: 2rem; }
-      .story-show .isl-item_type_foto .isl-item__content {
+      .story-show .isl-item_type_foto .photo, .story-show .isl-item_type_fototur .photo {
+        margin-right: 2rem;
+        -ms-flex: 1 0 250px;
+        flex: 1 0 250px; }
+      .story-show .isl-item_type_foto .isl-item__content, .story-show .isl-item_type_fototur .isl-item__content {
         display: -ms-flexbox;
         display: flex; }
         @media (max-width: 600px) {
-          .story-show .isl-item_type_foto .isl-item__content {
+          .story-show .isl-item_type_foto .isl-item__content, .story-show .isl-item_type_fototur .isl-item__content {
             -ms-flex-direction: column;
             flex-direction: column; } }
     .story-show .isl-item_type_dagbog {
@@ -335,3 +337,7 @@ form p.inline {
 
 .storyline-form {
   max-width: 42rem; }
+
+.inline input,
+.inline label {
+  display: inline; }

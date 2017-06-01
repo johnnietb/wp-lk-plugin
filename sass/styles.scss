@@ -136,3 +136,10 @@ form p.inline {
 .storyline-form {
   max-width: 42rem;
 }
+
+.inline {
+    input,
+    label {
+        display: inline;
+    }
+}
