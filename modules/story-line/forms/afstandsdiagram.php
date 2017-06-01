@@ -1,4 +1,4 @@
-<h1>Egenvurdering</h1>
+<h1>Afstandsdiagram</h1>
 
 <?php
 foreach ($instance->fields as $id => $field) {
