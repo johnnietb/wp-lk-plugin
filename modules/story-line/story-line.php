@@ -249,9 +249,9 @@ Class Inzite_Story_Line {
 
 		ksort($story_types);
 
-		echo '<div class="dropdown" role="menu">';
+		echo '<nav class="dropdown" role="menu">';
 			if ($add) {
-				echo '<button class="btn btn-primary dropdown-toggle" type="button" data-toggle="dropdown">Tilføj sektion<span class="caret"></span></button>';
+				echo '<button class="btn btn-primary dropdown-toggle" type="button" data-toggle="dropdown">Tilføj sektion <span class="caret"></span></button>';
 				echo '<ul class="dropdown-menu multi-level section_types">';
 
 				foreach ($story_types as $category => $types) {
@@ -273,11 +273,11 @@ Class Inzite_Story_Line {
 				}
 
 				echo '</ul>';
-				echo '<a href="?pdf=download" target="_blank" class="button btn-success">Gem som PDF</a>';
+				echo '<a href="?pdf=download" target="_blank" class="btn btn-default pull-right">Gem som PDF</a>';
 			} else {
-				echo '<a href="?pdf=download&user_id='.$current_user->ID.'" target="_blank" class="button btn-success">Gem som PDF</a>';
+				echo '<a href="?pdf=download&user_id='.$current_user->ID.'" target="_blank" class="button btn-success pull-right">Gem som PDF</a>';
 			}
-		echo '</div>';
+		echo '</nav>';
 	}
 
 }
