@@ -1,4 +1,4 @@
-<h1>Afstandsdiagram</h1>
+<h1>Relationsdiagram</h1>
 
 <?php
 foreach ($instance->fields as $id => $field) {

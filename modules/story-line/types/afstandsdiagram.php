@@ -1,7 +1,7 @@
 <?php
 /*
-Title: Afstandsdiagram
-Description: Tilføj afstandsdiagram
+Title: Relationsdiagram
+Description: Tilføj Relationsdiagram
 Category:
 Author: Johnnie Bertelsen
 Version: 0.1
@@ -16,10 +16,10 @@ Class isl_afstandsdiagram extends Inzite_Story_Line {
 				'title' => 'Kategori',
 				'placeholder' => '',
 				'options' => array(
-					'option_1' => '1. Dem bliver jeg let sur eller gal på',
+					'option_1' => '1. Dem jeg let bliver sur eller gal på',
 					'option_2' => '2. Dem der har betydning for mig i øjeblikket',
 					'option_3' => '3. Dem det støtter mig og hjælper mig i forandringerne',
-					'option_4' => '4. Dem jeg kan være fornuftige sammen med',
+					'option_4' => 'Dem jeg kan være fornuftig sammen med',
 				)
 			),
 			'question_1_1' => array(
@@ -103,7 +103,7 @@ Class isl_afstandsdiagram extends Inzite_Story_Line {
 			'question_4_2' => array(
 				'type' => 'textarea',
 				'rows' => 8,
-                'title' => 'Dem Dem jeg for det meste kan bevare fornuften sammen med.',
+                'title' => 'Dem jeg for det meste bevarer fornuften sammen med.',
 				'placeholder' => 'Skriv et navn pr. linie...'
 			),
 			'question_4_3' => array(
