@@ -103,6 +103,9 @@ class PDF_HTML extends FPDF {
   {
       //Opening tag
       $this->ALIGN = '';
+      if (empty($attr["ALIGN"])) {
+        $attr["ALIGN"] = 'LEFT';
+      }
       switch($tag){
           case 'STRONG':
               $this->SetStyle('B',true);
