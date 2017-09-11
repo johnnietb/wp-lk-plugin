@@ -13,6 +13,7 @@ Class isl_dagbog extends Inzite_Story_Line {
 		$this->fields = array(
 			'content' => array(
 				'type' => 'textarea',
+				'rows' => 15,
 				'title' => 'Indhold',
 				'placeholder' => 'Skriv din tekst her'
 			)

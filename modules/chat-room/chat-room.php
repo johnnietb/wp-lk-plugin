@@ -71,6 +71,7 @@ Class Inzite_Chat {
 			'rewrite' => $rewrite
 		);
 		register_post_type( 'inzite-chat', $args );
+		flush_rewrite_rules();
 	}
 
 	function enqueue_scripts() {

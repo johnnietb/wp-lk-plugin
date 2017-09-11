@@ -1,0 +1,87 @@
+.afstandsdiagram {
+	display: flex;
+	justify-content: space-between;
+	align-items: flex-end;
+	.me {
+		align-self: center;
+		flex: 0 1 79px;
+		padding: .5rem;
+	}
+	.distance {
+		display: flex;
+		flex-direction: column-reverse;
+		flex: 1 1 auto;
+
+		&__title {
+			background-color: #fafafa;
+			padding: .5rem;
+			text-align: center;
+			font-size: .875em;
+			border: 1px solid #e4e4e4;
+			border-right: 1;
+			border-left: 0;
+		}
+		&__list {
+			border-bottom: 5px solid #bada55;
+			list-style: none;
+			padding: .5rem;
+			margin: 0;
+			position: relative;
+			background-image: linear-gradient( to top, rgba(#bada55,.3), rgba(#bada55,0));
+			border-right: 1px solid #a7a7a7;
+			&:after {
+				content: "";
+				width: 50%;
+				height: 1px;
+				position: absolute;
+				top: 0;
+				right: 0;
+				background-image: linear-gradient( to left, rgba(#bada55,.3), rgba(#bada55,0));
+			}
+		}
+		&__name {
+			text-align: right;
+			opacity: .65;
+			font-size: .75em;
+		}
+		&.distance_very-close {
+			.distance__list {
+				border-color: #55b7da;
+				background-image: linear-gradient( to top, rgba(#55b7da,.3), rgba(#55b7da,0));
+				&:after {
+					background-image: linear-gradient( to left, rgba(#55b7da,1), rgba(#55b7da,0));
+				}
+			}
+			.distance__title {
+				border-left: 1px solid #e4e4e4;
+			}
+		}
+		&.distance_close {
+			.distance__list {
+				border-color: #bada55;
+				background-image: linear-gradient( to top, rgba(#bada55,.3), rgba(#bada55,0));
+				&:after {
+					background-image: linear-gradient( to left, rgba(#bada55,1), rgba(#bada55,0));
+				}
+			}
+		}
+		&.distance_far {
+			.distance__list {
+				border-color: #fb9219;
+				background-image: linear-gradient( to top, rgba(#fb9219,.3), rgba(#fb9219,0));
+				&:after {
+					background-image: linear-gradient( to left, rgba(#fb9219,1), rgba(#fb9219,0));
+				}
+			}
+		}
+		&.distance_very-far {
+			.distance__list {
+				border-color: #f13a3a;
+				background-image: linear-gradient( to top, rgba(#f13a3a,.3), rgba(#f13a3a,0));
+				&:after {
+					background-image: linear-gradient( to left, rgba(#f13a3a,1), rgba(#f13a3a,0));
+				}
+			}
+		}
+	}
+}

@@ -1,5 +1,7 @@
 @import "story.scss";
 
+@import "afstandsdiagram.scss";
+
 .form-user_passchange {
   display:none;
   border: 1px solid #eee;
@@ -16,8 +18,8 @@
 .story-submit {
 	display: block;
 	height:75px;
-  width: 100%;
-  text-align: center;
+    width: 100%;
+    text-align: center;
 	border-radius: 0 0 5px 5px;
 	border: 1px solid #ddd;
 	background: #4d3d50;
@@ -133,4 +135,11 @@ form p.inline {
 
 .storyline-form {
   max-width: 42rem;
+}
+
+.inline {
+    input,
+    label {
+        display: inline;
+    }
 }

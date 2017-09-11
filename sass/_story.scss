@@ -62,13 +62,15 @@
       font-weight: 700;
       opacity: .5;
     }
-    &_type_foto {
+    &_type_foto,
+    &_type_fototur {
       border-left-color: #c0413b;
       .isl-item__title {
         color: #c0413b;
       }
       .photo {
         margin-right: 2rem;
+        flex: 1 0 250px;
       }
       .isl-item__content {
         display: flex;
