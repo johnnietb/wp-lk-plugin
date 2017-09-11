@@ -445,7 +445,7 @@ class Inzite_User_Data {
 
 
 		if ( $current_user->ID != 0 && isset($_GET['pdf']) && $_GET['pdf'] == "download") {
-			if ( intval($_GET['user_id']) ) {
+			if ( isset($_GET['user_id']) && intval($_GET['user_id']) ) {
 				$queried_user = get_userdata( intval($_GET['user_id']) );
 				$user_parent = intval(get_user_meta( intval($_GET['user_id']) , 'parent_userid', true ));
 				if ($current_user->ID == $user_parent) {

@@ -5,11 +5,13 @@
 
 <?php if (!empty($data)) { ?>
 	<div class="isl-item__content" id="foto_<?php echo $id; ?>">
+		<?php if (!empty($data['foto'])) { ?>
 		<div class="photo">
 			<a href="<?php echo $data['foto']; ?>" class="fancybox">
-				<img src="<?php echo $data['foto']; ?>" alt="<?php echo $data['alder']['title']; ?>"/>
+				<img src="<?php echo $data['foto']; ?>" alt="<?php echo $fields['age']['title']; ?>"/>
 			</a>
 		</div>
+		<?php }; ?>
 
 		<div class="caption">
 			<p>
