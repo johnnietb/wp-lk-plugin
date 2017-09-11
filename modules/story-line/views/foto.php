@@ -7,7 +7,7 @@
 	<div class="isl-item__content" id="foto_<?php echo $id; ?>">
 		<div class="photo">
 			<a href="<?php echo $data['foto']; ?>" class="fancybox">
-				<img src="<?php echo $data['foto']; ?>" alt="<?php echo $fields['alder']['title']; ?>"/>
+				<img src="<?php echo $data['foto']; ?>" alt="<?php echo $data['alder']['title']; ?>"/>
 			</a>
 		</div>
 
