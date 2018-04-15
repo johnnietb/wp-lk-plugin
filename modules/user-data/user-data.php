@@ -596,7 +596,7 @@ class Inzite_User_Data
 			if ('POST' == $_SERVER['REQUEST_METHOD'] && !empty($_POST['isl_action']) && ($_POST['isl_action'] == 'inzite-update-story')) {
 				$current_user = wp_get_current_user();
 
-				if ($queried_user_id = intval($_POST['isl_user_id'])) {
+				if (!$queried_user_id = intval($_POST['isl_user_id'])) {
 					return false;
 				}
 
