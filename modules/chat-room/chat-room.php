@@ -72,6 +72,7 @@ Class Inzite_Chat {
 		);
 		register_post_type( 'inzite-chat', $args );
 		flush_rewrite_rules();
+
 	}
 
 	function enqueue_scripts() {

@@ -1,19 +1,23 @@
+<?php $question = $data['type'];?>
+
 <div class="isl-item__title-line">
-	<h2 class="isl-item__title">Egenvurdering</h2>
+	<h2 class="isl-item__title">Egenvurdering - <?php print_r( $fields['type']['options'][$question] );?></h2>
 	<date><?php echo $date; ?></date>
 </div>
 
-<?php if (!empty($data)) {
-	foreach ($data as $id => $field) {
+<?php
 
-		if ($field && $id != 'type'):
-	    $width = (intval($field)/10)*100;
+if ( !empty( $data ) ) {
+    foreach ( $data as $id => $field ) {
 
-			if( strpos($id, "question_4") !== 0): ?>
+        if ( $field && $id != 'type' ):
+            $width = ( intval( $field ) / 10 ) * 100;
+
+            if ( strpos( $id, "question_4" ) !== 0 ): ?>
 				<div class="isl-item__content" id="foto_<?php echo $id; ?>">
 
 					<div class="title">
-						<?php print_r($fields[$id]['title']); ?>
+						<?php print_r( $fields[$id]['title'] );?>
 					</div>
 
 					<div class="progress">
@@ -24,10 +28,11 @@
 
 				</div>
 			<?php
-			else:
-				echo '<p>' . $fields[$id]['title'] . '</p>';
-				echo '<p><span class="answer"> ' . $field . '</span></p>';
-			endif;
-		endif;
-	}
-}; ?>
+else:
+            echo '<p>' . $fields[$id]['title'] . '</p>';
+            echo '<p><span class="answer"> ' . $field . '</span></p>';
+        endif;
+        endif;
+    }
+}
+;?>

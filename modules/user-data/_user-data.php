@@ -398,7 +398,7 @@ class Inzite_User_Data {
 			echo ''.$user_data->data->user_login.'';
 		echo '</p>';
 
-		echo '<p class="data-display_name">';
+		echo '<p class="data-display_name" style="display: none;">';
 			echo '<label>Kaldenavn / Vist navn</label>';
 			echo ''.$user_data->data->display_name.'';
 		echo '</p>';
@@ -512,11 +512,11 @@ class Inzite_User_Data {
 				echo '<div class="profile-form">';
 
 					echo '<p class="form-user_login">';
-						echo '<label for="user_login">Login</label>';
+						echo '<label for="user_login">Brugernavn</label>';
 						echo '<input class="text-input" name="user_login" type="text" value="" />';
 					echo '</p>';
 
-					echo '<p class="form-display_name">';
+					echo '<p class="form-display_name" style="display: none !important;">';
 						echo '<label for="display_name">Kaldenavn / Vist navn</label>';
 						echo '<input class="text-input" name="display_name" type="text" value="" />';
 					echo '</p>';
