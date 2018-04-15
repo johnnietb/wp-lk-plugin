@@ -1,284 +1,304 @@
 <?php
 $isl = new Inzite_Story_Line();
 
-Class Inzite_Story_Line {
+class Inzite_Story_Line
+{
 
-	// prefix used for classes in the (i)nzite (s)tory (l)ine
-	public $classPrefix = 'isl_';
+    // prefix used for classes in the (i)nzite (s)tory (l)ine
+    public $classPrefix = 'isl_';
 
-	// storing all the types available
-	public $types = array();
+    // storing all the types available
+    public $types = array();
 
-	// storing each templates fields
-	public $fields = array();
+    // storing each templates fields
+    public $fields = array();
 
-	// storing each templates fields
-	public $data = array();
+    // storing each templates fields
+    public $data = array();
 
-	// maximum hours before disabling edit capabilities
-	public $hours = 48;
+    // maximum hours before disabling edit capabilities
+    public $hours = 48;
 
-	private static $headers = array(
-		'Title'       => 'Title',
-		'Description' => 'Description',
-		'Author'      => 'Author',
-		'Version'     => 'Version',
-		'Category'	  => 'Category'
-	);
+    private static $headers = array(
+        'Title'       => 'Title',
+        'Description' => 'Description',
+        'Author'      => 'Author',
+        'Version'     => 'Version',
+        'Category'    => 'Category',
+    );
 
-	public function __construct() {
-		foreach (glob(dirname( __FILE__ ) . '/types/*.php') as $type) {
-  			require_once($type);
-  			$typeName = str_replace(array(dirname( __FILE__ ) . '/types/', '.php'), '', $type);
+    public function __construct()
+    {
+        foreach ( glob( dirname( __FILE__ ) . '/types/*.php' ) as $type ) {
+            require_once $type;
+            $typeName = str_replace( array( dirname( __FILE__ ) . '/types/', '.php' ), '', $type );
 
-  			if ( class_exists($this->classPrefix . $typeName) ) {
-  				$this->types[$typeName] = get_file_data($type, self::$headers);
-  			}
-		}
-	}
+            if ( class_exists( $this->classPrefix . $typeName ) ) {
+                $this->types[$typeName] = get_file_data( $type, self::$headers );
+            }
+        }
+    }
 
-	public function processForm($className, $data, $post_id, $currentData = array(), $returnData = array()) {
-		if (isset($this->types[$className])) {
-			$class = $this->classPrefix . $className;
-			$instance = new $class;
+    public function processForm( $className, $data, $post_id, $currentData = array(), $returnData = array() )
+    {
+        if ( isset( $this->types[$className] ) ) {
+            $class    = $this->classPrefix . $className;
+            $instance = new $class;
 
-			$date = sanitize_text_field($data['isl_date']);
-			if (!$date) {
-				$date = date('d-m-Y');
-			}
+            $date = sanitize_text_field( $data['isl_date'] );
+            if ( !$date ) {
+                $date = date( 'd-m-Y' );
+            }
 
-			$returnData['isl_date'] = $date;
+            $returnData['isl_date'] = $date;
 
-			foreach($instance->fields as $field => $options) {
+            foreach ( $instance->fields as $field => $options ) {
 
-				if ($options['type'] == 'file') {
-					$returnData[$field] = $this->processAttachment($field, $options, $post_id, $className, $currentData);
-				} else {
-					if (isset($data[$field])) {
-						$returnData[$field] = $this->processField($data[$field], $options);
+                if ( $options['type'] == 'file' ) {
+                    $returnData[$field] = $this->processAttachment( $field, $options, $post_id, $className, $currentData );
+                } else {
+                    if ( isset( $data[$field] ) ) {
+                        $returnData[$field] = $this->processField( $data[$field], $options );
 
-					}
+                    }
 
-				}
-			}
+                }
+            }
 
-			return array(
-				$className => $returnData
-			);
-		}
-	}
+            return array(
+                $className => $returnData,
+            );
+        }
+    }
 
-	public function processAttachment($field, $options, $post_id, $className, $currentData) {
+    public function processAttachment( $field, $options, $post_id, $className, $currentData )
+    {
 
-		if( 'POST' == $_SERVER['REQUEST_METHOD'] && !empty( $_FILES )) {
-			require_once(ABSPATH . "wp-admin" . '/includes/image.php');
-			require_once(ABSPATH . "wp-admin" . '/includes/file.php');
-			require_once(ABSPATH . "wp-admin" . '/includes/media.php');
+        if ( 'POST' == $_SERVER['REQUEST_METHOD'] && !empty( $_FILES ) ) {
+            require_once ABSPATH . "wp-admin" . '/includes/image.php';
+            require_once ABSPATH . "wp-admin" . '/includes/file.php';
+            require_once ABSPATH . "wp-admin" . '/includes/media.php';
 
-			if ( isset($_FILES[$field]['name']) ) {
-				if ( ($_FILES[$field]['size'] > 0) && (preg_match("/\.(?i:)(?:jpg|jpeg|gif|png|doc|docx|xls|xlsx|pdf)$/", $_FILES[$field]['name']))  ) {
-					$attachment = media_handle_upload($field, $post_id);
+            if ( isset( $_FILES[$field]['name'] ) ) {
+                if (  ( $_FILES[$field]['size'] > 0 ) && ( preg_match( "/\.(?i:)(?:jpg|jpeg|gif|png|doc|docx|xls|xlsx|pdf)$/", $_FILES[$field]['name'] ) ) ) {
+                    $attachment = media_handle_upload( $field, $post_id );
 
-					if (!is_object($attachment)) {
-						$image = wp_get_attachment_image_src( $attachment , 'inzite_user_images');
+                    if ( !is_object( $attachment ) ) {
+                        $image = wp_get_attachment_image_src( $attachment, 'inzite_user_images' );
 
-						if ($image) {
-							return $image[0];
-						} else {
-							return wp_get_attachment_url($attachment);
-						}
-					}
-				}
-			}
+                        if ( $image ) {
+                            return $image[0];
+                        } else {
+                            return wp_get_attachment_url( $attachment );
+                        }
+                    }
+                }
+            }
 
-		}
+        }
 
-		return (isset($currentData[$className][$field])) ? $currentData[$className][$field] : '';
-	}
+        return ( isset( $currentData[$className][$field] ) ) ? $currentData[$className][$field] : '';
+    }
 
-	public function processField($field, $options) {
-		// this should validate the fields depending on the type defined in $options, for now we just return everything.
-		return htmlspecialchars($field);
-	}
+    public function processField( $field, $options )
+    {
+        // this should validate the fields depending on the type defined in $options, for now we just return everything.
+        return htmlspecialchars( $field );
+    }
 
-	public function forms($className, $data = null) {
-		if (isset($this->types[$className])) {
-			$class = $this->classPrefix . $className;
-			$instance = new $class;
-			$info = $this->types[$className];
+    public function forms( $className, $data = null )
+    {
+        if ( isset( $this->types[$className] ) ) {
+            $class    = $this->classPrefix . $className;
+            $instance = new $class;
+            $info     = $this->types[$className];
 
-			if (isset($data[$className])) {
-				$data = $data[$className];
-			}
+            if ( isset( $data[$className] ) ) {
+                $data = $data[$className];
+            }
 
-			if ( file_exists(dirname( __FILE__ ) . '/forms/' . $className . '.php') ) {
-				require_once(dirname( __FILE__ ) . '/forms/' . $className . '.php');
-			} else {
-				require_once(dirname( __FILE__ ) . '/forms/_default.php');
-			}
-		}
-	}
+            if ( file_exists( dirname( __FILE__ ) . '/forms/' . $className . '.php' ) ) {
+                require_once dirname( __FILE__ ) . '/forms/' . $className . '.php';
+            } else {
+                require_once dirname( __FILE__ ) . '/forms/_default.php';
+            }
+        }
+    }
 
-	public function views($data = array()) {
-		if (isset($data)) {
-			$className = key($data);
-			if (isset($this->types[$className])) {
-				$class = $this->classPrefix . $className;
-				$instance = new $class;
+    public function views( $data = array() )
+    {
+        if ( isset( $data ) ) {
+            $className = key( $data );
+            if ( isset( $this->types[$className] ) ) {
+                $class    = $this->classPrefix . $className;
+                $instance = new $class;
 
-				// available commands from the templates
-				$date = $data[$className]['isl_date'];
-				unset($data[$className]['isl_date']);
+                // available commands from the templates
+                $date = $data[$className]['isl_date'];
+                unset( $data[$className]['isl_date'] );
 
-				$data = $data[$className];
-				$info = $this->types[$className];
-				$fields = $instance->fields;
+                $data   = $data[$className];
+                $info   = $this->types[$className];
+                $fields = $instance->fields;
 
+                ob_start();
+                if ( file_exists( dirname( __FILE__ ) . '/views/' . $className . '.php' ) ) {
+                    require dirname( __FILE__ ) . '/views/' . $className . '.php';
+                } else {
+                    require dirname( __FILE__ ) . '/views/_default.php';
+                }
 
+                return ob_get_clean();
+                ob_end_flush();
+            }
+        }
+    }
 
-				ob_start();
-				if ( file_exists(dirname( __FILE__ ) . '/views/' . $className . '.php') ) {
-    				require(dirname( __FILE__ ) . '/views/' . $className . '.php');
-				} else {
-					require(dirname( __FILE__ ) . '/views/_default.php');
-				}
+    public function input( $id, array $field, $data = array() )
+    {
+        if ( !empty( $field['type'] ) ) {
 
-				return ob_get_clean();
-    			ob_end_flush();
-			}
-		}
-	}
+            if ( !empty( $field['title'] ) ) {
+                echo '<label for="' . $id . '" class="control-label">' . $field['title'];
+            }
 
-	public function input($id, array $field, $data = array()) {
-		if (!empty($field['type'])) {
+            echo '</label>';
 
-			if (!empty($field['title']))
-				echo '<label for="'. $id .'" class="control-label">' . $field['title']; echo '</label>';
+            $placeholder = '';
+            if ( !empty( $field['placeholder'] ) ) {
+                $placeholder = $field['placeholder'];
+            }
 
-			$placeholder = '';
-			if (!empty($field['placeholder']))
-				$placeholder = $field['placeholder'];
+            $help_text = '';
+            if ( !empty( $field['help_text'] ) ) {
+                $help_text = $field['help_text'];
+            }
 
-			$help_text = '';
-			if (!empty($field['help_text']))
-				$help_text = $field['help_text'];
+            $value = '';
+            if ( !empty( $data ) ) {
+                $value = $data[$id];
+            }
 
-			$value = '';
-			if (!empty($data))
-				$value = $data[$id];
+            switch ( $field['type'] ) {
+                case 'editor': //tinymce
+                    $editor_settings = array(
+                        'teeny'         => true,
+                        'media_buttons' => false,
+                        'wpautop'       => true,
+                        'tinymce'       => array( 'link' => false, 'resize' => false, 'wp_autoresize_on' => true ),
+                    );
+                    wp_editor( $value, $id, $editor_settings );
+                    break;
 
-			switch ($field['type']) {
-				case 'editor': //tinymce
-					$editor_settings =  array(
-						'teeny' => true,
-						'media_buttons' => false,
-						'wpautop' => true,
-						'tinymce' => array('link'=>false, 'resize' => false, 'wp_autoresize_on' => true)
-					);
-					wp_editor($value, $id, $editor_settings );
-					break;
+                case 'email': //email
+                case 'number': //number
+                    echo '<input id="' . $id . '" class="form-control" name="' . $id . '" type="number" placeholder="' . $placeholder . '" value="' . $value . '" min="' . $field['min'] . '" max="' . $field['max'] . '">';
+                    echo '<p class="lk-field-description">Skriv et tal imellem ' . $field['min'] . ' og ' . $field['max'] . '</p>';
+                    break;
+                case 'password': //password
+                    echo '<input id="' . $id . '" class="form-control" name="' . $id . '" type="' . $field['type'] . '" placeholder="' . $placeholder . '" value="' . $value . '">';
+                    break;
 
-				case 'email': //email
-				case 'number': //number
-					echo '<input id="' . $id . '" class="form-control" name="' . $id . '" type="number" placeholder="' . $placeholder . '" value="' . $value . '" min="' . $field['min'] . '" max="' . $field['max'] . '">';
-					break;
-				case 'password': //password
-					echo '<input id="' . $id . '" class="form-control" name="' . $id . '" type="' . $field['type'] . '" placeholder="' . $placeholder . '" value="' . $value . '">';
-					break;
+                case 'select': //password
+                    echo '<select id="' . $id . '" class="form-control" name="' . $id . '">';
+                    foreach ( $field['options'] as $key => $label ) {
+                        if ( $value == $key ) {
+                            echo '<option value="' . $key . '" selected>' . $label . '</option>';
+                        } else {
+                            echo '<option value="' . $key . '">' . $label . '</option>';
+                        }
+                    }
+                    echo '</select>';
+                    break;
 
-				case 'select': //password
-					echo '<select id="' . $id . '" class="form-control" name="' . $id . '">';
-					foreach ($field['options'] as $key => $label) {
-						if ($value == $key) {
-							echo '<option value="'.$key.'" selected>'.$label.'</option>';
-						} else {
-							echo '<option value="'.$key.'">'.$label.'</option>';
-						}
-					}
-					echo '</select>';
-					break;
+                case 'file': //file
+                    if ( $value ) {
+                        echo '<p><img src="' . $value . '"></p>';
+                    }
 
-				case 'file': //file
-					if ($value)
-						echo '<p><img src="' . $value . '"></p>';
-					echo '<input id="' . $id . '" name="' . $id . '" type="file" placeholder="' . $placeholder . '" value="' . $value . '">';
-					break;
+                    echo '<input id="' . $id . '" name="' . $id . '" type="file" placeholder="' . $placeholder . '" value="' . $value . '">';
+                    break;
 
-				case 'textarea':
-					echo '<textarea id="' . $id . '" class="form-control" name="' . $id . '" placeholder="' . $placeholder . '" rows="'.$field['rows'].'">' . $value . '</textarea>';
-					break;
+                case 'textarea':
+                    echo '<textarea id="' . $id . '" class="form-control" name="' . $id . '" placeholder="' . $placeholder . '" rows="' . $field['rows'] . '">' . $value . '</textarea>';
+                    break;
 
-				default: //text
-					echo '<input id="' . $id . '" class="form-control" name="' . $id . '" type="text" placeholder="' . $placeholder . '" value="' . $value . '">';
-					break;
-			}
+                default: //text
+                    echo '<input id="' . $id . '" class="form-control" name="' . $id . '" type="text" placeholder="' . $placeholder . '" value="' . $value . '">';
+                    break;
+            }
 
-			if (!empty($field['text_after']))
-				echo '<label class="control-label text_after">' . $field['text_after']; echo '</label>';
+            if ( !empty( $field['text_after'] ) ) {
+                echo '<label class="control-label text_after">' . $field['text_after'];
+            }
 
-			if ($help_text != '')
-				echo '<p class="help-block">' . $help_text . '</p>';
+            echo '</label>';
 
-		}
-	}
+            if ( $help_text != '' ) {
+                echo '<p class="help-block">' . $help_text . '</p>';
+            }
 
-	public function form_start() {
-		echo '<form action="?story=show" method="POST" enctype="multipart/form-data" class="storyline-form">';
-	}
+        }
+    }
 
-	public function form_end($type, $date, $userId, $metaId) {
-		echo '<div class="submit form-group"><input type="submit" class="btn btn-primary btn-lg" value="Gem / tilføj" /></div>';
-		echo '<input type="hidden" name="isl_action" value="inzite-update-story">';
-		echo '<input type="hidden" name="isl_type" value="' . $type . '">';
-		echo '<input type="hidden" name="isl_date" value="' . $date . '">';
-		echo '<input type="hidden" name="isl_user_id" value="' . $userId . '">';
-		echo '<input type="hidden" name="isl_meta_id" value="' . $metaId . '">';
-		echo '</form>';
-	}
+    public function form_start()
+    {
+        echo '<form action="?story=show" method="POST" enctype="multipart/form-data" class="storyline-form">';
+    }
 
-	public function types_menu($add) {
-		$story_types = array();
+    public function form_end( $type, $date, $userId, $metaId )
+    {
+        echo '<div class="submit form-group"><input type="submit" class="btn btn-primary btn-lg" value="Gem / tilføj" /></div>';
+        echo '<input type="hidden" name="isl_action" value="inzite-update-story">';
+        echo '<input type="hidden" name="isl_type" value="' . $type . '">';
+        echo '<input type="hidden" name="isl_date" value="' . $date . '">';
+        echo '<input type="hidden" name="isl_user_id" value="' . $userId . '">';
+        echo '<input type="hidden" name="isl_meta_id" value="' . $metaId . '">';
+        echo '</form>';
+    }
 
-		foreach($this->types as $key => $item)
-		{
-			if (empty($item['Category'])) {
-				$item['Category'] = $item['Title'];
-			}
-		   $story_types[$item['Category']][$key] = $item;
-		}
+    public function types_menu( $add )
+    {
+        $story_types = array();
 
-		ksort($story_types);
+        foreach ( $this->types as $key => $item ) {
+            if ( empty( $item['Category'] ) ) {
+                $item['Category'] = $item['Title'];
+            }
+            $story_types[$item['Category']][$key] = $item;
+        }
 
-		echo '<nav class="dropdown" role="menu">';
-			if ($add) {
-				echo '<button class="btn btn-primary dropdown-toggle" type="button" data-toggle="dropdown">Tilføj sektion <span class="caret"></span></button>';
-				echo '<ul class="dropdown-menu multi-level section_types">';
+        ksort( $story_types );
 
-				foreach ($story_types as $category => $types) {
+        echo '<nav class="dropdown" role="menu">';
+        if ( $add ) {
+            echo '<button class="btn btn-primary dropdown-toggle" type="button" data-toggle="dropdown">Tilføj sektion <span class="caret"></span></button>';
+            echo '<ul class="dropdown-menu multi-level section_types">';
 
-					if (count($types) > 1) {
-						echo '<li class="dropdown-submenu"><a href="#">' . $category . ' <span class="badge">' . count($types) . '<span></a>' . PHP_EOL;
-						echo '<ul class="dropdown-menu">' . PHP_EOL;
-					}
+            foreach ( $story_types as $category => $types ) {
 
-					foreach ($types as $type => $headers) {
-						echo '<li><a href="?update=show&type='.$type.'">' . $headers['Title'] . '</a></li>' . PHP_EOL;
-					}
+                if ( count( $types ) > 1 ) {
+                    echo '<li class="dropdown-submenu"><a href="#">' . $category . ' <span class="badge">' . count( $types ) . '<span></a>' . PHP_EOL;
+                    echo '<ul class="dropdown-menu">' . PHP_EOL;
+                }
 
-					if (count($types) > 1) {
-						echo '</ul>' . PHP_EOL;
-						echo '</li>' . PHP_EOL;
-					}
+                foreach ( $types as $type => $headers ) {
+                    echo '<li><a href="?update=show&type=' . $type . '">' . $headers['Title'] . '</a></li>' . PHP_EOL;
+                }
 
-				}
+                if ( count( $types ) > 1 ) {
+                    echo '</ul>' . PHP_EOL;
+                    echo '</li>' . PHP_EOL;
+                }
 
-				echo '</ul>';
-				echo '<a href="?pdf=download" target="_blank" class="btn btn-default pull-right">Gem som PDF</a>';
-			} else {
-				echo '<a href="?pdf=download&user_id='.$current_user->ID.'" target="_blank" class="button btn-success pull-right">Gem som PDF</a>';
-			}
-		echo '</nav>';
-	}
+            }
+
+            echo '</ul>';
+            echo '<a href="?pdf=download" target="_blank" class="btn btn-default pull-right">Gem som PDF</a>';
+        } else {
+            echo '<a href="?pdf=download&user_id=' . $current_user->ID . '" target="_blank" class="button btn-success pull-right">Gem som PDF</a>';
+        }
+        echo '</nav>';
+    }
 
 }
-?>

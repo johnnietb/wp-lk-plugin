@@ -1,63 +1,70 @@
-@import "story.scss";
+@import 'story.scss';
 
-@import "afstandsdiagram.scss";
+@import 'afstandsdiagram.scss';
+
+.lk-field-description {
+    opacity: 0.5;
+    font-size: 12px;
+}
 
 .form-user_passchange {
-  display:none;
-  border: 1px solid #eee;
-  padding: 1.3em;
-  border-radius: 5px;
-  color:#4d3d50;
-  font-size: 11px;
-  background: #fff;
-  margin: 1.3em 0;
+    display: none;
+    border: 1px solid #eee;
+    padding: 1.3em;
+    border-radius: 5px;
+    color: #4d3d50;
+    font-size: 11px;
+    background: #fff;
+    margin: 1.3em 0;
 }
 .user_passchange {
-  margin:1.3em 0;
+    margin: 1.3em 0;
 }
 .story-submit {
-	display: block;
-	height:75px;
+    display: block;
+    height: 75px;
     width: 100%;
     text-align: center;
-	border-radius: 0 0 5px 5px;
-	border: 1px solid #ddd;
-	background: #4d3d50;
-	color:#fff;
-	margin:10px 0 0 0;
+    border-radius: 0 0 5px 5px;
+    border: 1px solid #ddd;
+    background: #4d3d50;
+    color: #fff;
+    margin: 10px 0 0 0;
 }
 
 .story-upload {
-  border: 1px solid #eee;
-  border-bottom:0;
-  border-top:0;
-  background: #f5f5f5;
-  padding:20px 10px;
+    border: 1px solid #eee;
+    border-bottom: 0;
+    border-top: 0;
+    background: #f5f5f5;
+    padding: 20px 10px;
 }
 
-#wp-link p.howto, #wp-link #search-panel, #wp-link #search-results {
-  display: none!important;
+#wp-link p.howto,
+#wp-link #search-panel,
+#wp-link #search-results {
+    display: none !important;
 }
 #wp-link-wrap.search-panel-visible {
-  height: 200px!important;
+    height: 200px !important;
 }
-#wp-link label input[type=text] {
-  display: inline-block;
+#wp-link label input[type='text'] {
+    display: inline-block;
 }
 #wp-link #wp-link-close {
-  width: 75px;
+    width: 75px;
 }
 #wp-frontendstory-editor-container {
-  border: 1px solid #eee;
-	background:#fff;
-	border-radius: 5px 5px 0 0;
+    border: 1px solid #eee;
+    background: #fff;
+    border-radius: 5px 5px 0 0;
 }
 
 .dropdown-submenu {
     position: relative;
 }
 
-.dropdown-submenu>.dropdown-menu {
+.dropdown-submenu > .dropdown-menu {
     top: 0;
     left: 100%;
     margin-top: -6px;
@@ -67,13 +74,13 @@
     border-radius: 0 6px 6px 6px;
 }
 
-.dropdown-submenu:hover>.dropdown-menu {
+.dropdown-submenu:hover > .dropdown-menu {
     display: block;
 }
 
-.dropdown-submenu>a:after {
+.dropdown-submenu > a:after {
     display: block;
-    content: " ";
+    content: ' ';
     float: right;
     width: 0;
     height: 0;
@@ -85,7 +92,7 @@
     margin-right: -10px;
 }
 
-.dropdown-submenu:hover>a:after {
+.dropdown-submenu:hover > a:after {
     border-left-color: #fff;
 }
 
@@ -93,7 +100,7 @@
     float: none;
 }
 
-.dropdown-submenu.pull-left>.dropdown-menu {
+.dropdown-submenu.pull-left > .dropdown-menu {
     left: -100%;
     margin-left: 10px;
     -webkit-border-radius: 6px 0 6px 6px;
@@ -102,39 +109,39 @@
 }
 
 .mce-panel.mce-edit-area {
-  border: 1px solid #dddddd;
-  border-width: 0 1px 0 1px !important;
+    border: 1px solid #dddddd;
+    border-width: 0 1px 0 1px !important;
 }
 
 form p.inline {
-  display: flex;
-  white-space: nowrap;
-  align-items: baseline;
-  label {
-    margin-right: .5rem;
-  }
+    display: flex;
+    white-space: nowrap;
+    align-items: baseline;
+    label {
+        margin-right: 0.5rem;
+    }
 }
 
 .question {
-  display: none;
-  &.type {
-    display: block;
-  }
-  &.active {
-    display: block;
-  }
+    display: none;
+    &.type {
+        display: block;
+    }
+    &.active {
+        display: block;
+    }
 }
 
-[type="number"] {
-	max-width: 10rem;
+[type='number'] {
+    max-width: 10rem;
 }
 
 .text_after {
-	margin-left: .5em;
+    margin-left: 0.5em;
 }
 
 .storyline-form {
-  max-width: 42rem;
+    max-width: 42rem;
 }
 
 .inline {
