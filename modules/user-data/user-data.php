@@ -24,7 +24,6 @@ class Inzite_User_Data
 {
 	public function __construct()
 	{
-
 		register_activation_hook(__FILE__, array($this, 'story_activation_hook'));
 		register_deactivation_hook(__FILE__, array($this, 'story_activation_hook'));
 		add_action('init', array($this, 'register_story_post_types'));
@@ -598,17 +597,23 @@ class Inzite_User_Data
 				$current_user = wp_get_current_user();
 
 				if ($queried_user_id = intval($_POST['isl_user_id'])) {
-					$queried_user = get_userdata($queried_user_id);
-					$user_parent = intval(get_user_meta(
-						$queried_user_id,
-						'parent_userid',
-						true
-					));
-
-					if ($current_user->ID == $user_parent) {
-						$current_user = $queried_user;
-					}
+					return false;
 				}
+
+				if ($current_user->ID != $queried_user_id) {
+					return false;
+				}
+
+				// We will ignore user parent to enable more security so only the loggedin user has access.
+				// $user_parent = intval(get_user_meta(
+				// 		$queried_user_id,
+				// 		'parent_userid',
+				// 		true
+				// ));
+				//
+				// if ($current_user->ID == $user_parent) {
+				// 		$current_user = get_userdata($queried_user_id);
+				// }
 
 				$post_id = 0;
 				$args = array(
