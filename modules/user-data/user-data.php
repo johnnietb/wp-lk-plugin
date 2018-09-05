@@ -480,8 +480,6 @@ class Inzite_User_Data
 	{
 		$current_user = wp_get_current_user();
 
-
-
 		if ($current_user->ID != 0 && isset($_GET['pdf']) && $_GET['pdf'] == "download") {
 			if (isset($_GET['user_id']) && intval($_GET['user_id'])) {
 				$queried_user = get_userdata(intval($_GET['user_id']));
