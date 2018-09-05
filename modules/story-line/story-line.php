@@ -294,9 +294,11 @@ class Inzite_Story_Line
             }
 
             echo '</ul>';
-            echo '<a href="?pdf=download" target="_blank" class="btn btn-default pull-right">Gem som PDF</a>';
+            // echo '<a href="?pdf=download" target="_blank" class="btn btn-default pull-right">Gem som PDF</a>';
+            echo '<a href="javascript:window.print()" target="_blank" class="btn btn-default pull-right">Gem som PDF</a>';
         } else {
-            echo '<a href="?pdf=download&user_id=' . $current_user->ID . '" target="_blank" class="button btn-success pull-right">Gem som PDF</a>';
+            //echo '<a href="?pdf=download&user_id=' . $current_user->ID . '" target="_blank" class="button btn-success pull-right">Gem som PDF</a>';
+            echo '<a href="javascript:window.print()" target="_blank" class="button btn-success pull-right">Gem som PDF</a>';
         }
         echo '</nav>';
     }
