@@ -24,14 +24,14 @@ class isl_personbeskrivelse extends Inzite_Story_Line
             ),
             'beskrivelse'  => array(
                 'type'        => 'text',
-                'title'       => 'Min',
+                'title'       => 'Personens forhold til mig',
                 'placeholder' => '',
                 'inline'      => true,
             ),
             'age'          => array(
                 'type'        => 'number',
-                'title'       => 'Han/hun er',
-                'text_after'  => ' år gammel.',
+                'title'       => 'Hans/hendes alder',
+                'text_after'  => '',
                 'placeholder' => 'Skriv alder i år.',
                 'min'         => '0',
                 'max'         => '120',

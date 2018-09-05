@@ -1,4 +1,7 @@
 jQuery(document).ready(function() {
+    jQuery('.form-guide').click(function(){
+        jQuery('.form-guide-content').slideToggle();
+    });
     jQuery('.storyline-form').validate({
         debug: true,
         highlight: function(element) {
