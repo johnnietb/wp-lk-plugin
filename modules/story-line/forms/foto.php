@@ -1,6 +1,5 @@
 <h1><?=$info['Title']; ?></h1>
 
-<?php if(current_user_can('edit_others_pages')): ?>
 	<div class="form-guide">
 		<span>Vejledning</span>
 		<div class="form-guide-content">
@@ -9,7 +8,6 @@
 			<p>Lav derefter en beskrivelse af hvornår billedet blev taget og hvad du kan huske om tiden hvor fotoet er fra.</p>
 		</div>
 	</div>
-<?php endif; ?>
 
 <?php
 foreach ($instance->fields as $id => $field) {

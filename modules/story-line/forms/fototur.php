@@ -3,9 +3,9 @@
 	<div class="form-guide">
 		<span>Vejledning</span>
 		<div class="form-guide-content">
-		<p>Først udfyldes felterne hvor den pågældende person beskrives med alder, køn og relation til dig. Er han din onkel, din lærer eller din kammerat?</p>
+			<p>Upload et fotografi fra fototuren.</p>
 
-		<p>Beskriv derefter dit forhold til personen yderligere ud fra de enkelte spørgsmål.</p>
+			<p>Lav derefter en beskrivelse om stedet, minderne og gensynet.</p>
 		</div>
 	</div>
 

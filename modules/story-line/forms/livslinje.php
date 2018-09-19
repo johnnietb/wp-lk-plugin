@@ -1,12 +1,11 @@
 <h2>Livslinje</h2>
-<?php if(current_user_can('edit_others_pages')): ?>
 	<div class="form-guide">
 		<span>Vejledning</span>
 		<div class="form-guide-content">
-			<p>Vælg den ønskede kategori i øverste felt og besvar spørgsmålet i felterne nedenfor baseret på din alder.</p>
+			<p>Vælg først den ønskede kategori i øverste felt.</p>
+			<p>Herefter udfyldes felterne med adresser, navne eller ord relevante for kategorien. Hvad og hvem har været en del af dit liv, hvornår?</p>
 		</div>
 	</div>
-<?php endif; ?>
 
 <?php
 foreach ($instance->fields as $id => $field) {

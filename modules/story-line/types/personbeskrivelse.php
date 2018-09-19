@@ -94,7 +94,7 @@ class isl_personbeskrivelse extends Inzite_Story_Line
             'hader_mig'    => array(
                 'type'        => 'textarea',
                 'rows'        => 5,
-                'title'       => 'Det bryder jeg mig ikke om ved ham/hende',
+                'title'       => 'Det værste ved ham/hende',
                 'placeholder' => '',
             ),
             'ligner'       => array(
