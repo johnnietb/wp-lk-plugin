@@ -13,6 +13,7 @@ jQuery(document).ready(function() {
     }
     jQuery('.isl-item').each(function() {
         var edit_button = jQuery('<button class="edit-story"><i class="fa fa-pencil" aria-hidden="true"></i> Rediger</button>');
+        var delete_button = jQuery('<button class="delete-story"><i class="fa fa-times" aria-hidden="true"></i> Slet</button>');
         var current_date = Date.now();
         var isl_date = jQuery(this).data('date');
         var date_diff = Math.abs(current_date - parseDanishDate(isl_date)) / (1000 * 60 * 60);
@@ -23,7 +24,12 @@ jQuery(document).ready(function() {
             edit_button.click(function() {
                 window.location.href = '?update=story&date=' + isl_date + '&id=' + isl_id + '&type=' + isl_type;
             });
+
         }
+        jQuery(this).append(delete_button);
+        delete_button.click(function() {
+            window.location.href = '?delete=story&date=' + isl_date + '&id=' + isl_id + '&type=' + isl_type;
+        });
     });
 });
 
