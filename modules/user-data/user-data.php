@@ -398,6 +398,15 @@ class Inzite_User_Data
 								1
 							);
 						}
+					} else if (isset($_GET['delete'])) {
+							$this->inzite_profile_story_delete(
+								$current_user,
+								sanitize_text_field((isset($_GET['date'])) ? $_GET['date'] : ''),
+								sanitize_text_field((isset($_GET['id'])) ? $_GET['id'] : ''),
+								sanitize_text_field((isset($_GET['type'])) ? $_GET['type'] : '')
+							);
+
+						//	wp_redirect(site_url('/profile/' . $user->user_nicename . '/?story=show'));
 					} else if (isset($_GET['chats'])) {
 						$this->inzite_profile_chats($current_user);
 					} else if (isset($_GET['users']) && $user_is_parent > 0) {
@@ -441,6 +450,16 @@ class Inzite_User_Data
 		);
 		$life_story = get_posts($args);
 		$story_html = '';
+
+		// if no post was found we setup a new post to store our data on.
+		if (empty($life_story)) {
+			wp_insert_post(array(
+				'author' => $current_user_id,
+				'post_type' => 'life-story',
+				'post_status' => 'publish'
+			));
+		}
+
 		if ($life_story) {
 			$life_story = reset($life_story);
 			$life_story->ID;
@@ -532,6 +551,33 @@ class Inzite_User_Data
 			$totalHours += $dateDiff->d * 24;
 			$totalHours += $dateDiff->h;
 			return $totalHours;
+		}
+	}
+
+	function inzite_profile_story_delete($current_user, $date, $meta_id, $type) {
+		if (DateTime::createFromFormat('d-m-Y', $date) === false || intval($meta_id) <= 0 || empty($type)) {
+			return false;
+		}
+
+		global $wpdb;
+
+		$args = array(
+			'author' => $current_user->ID,
+			'post_type' => 'life-story',
+			'posts_per_page' => 1
+		);
+
+		if (!$life_story = get_posts($args)) {
+			return false;
+		}
+
+		$life_story = reset($life_story);
+		$life_story->ID;
+
+		if ($this->get_meta_with_id($life_story->ID, 'life_story', $meta_id)) {
+			var_dump('life_story', (int) $meta_id);
+			var_dump(delete_metadata_by_mid('life_story', (int) $meta_id));
+			//var_dump( $wpdb->get_results($wpdb->prepare("DELETE FROM $wpdb->postmeta WHERE post_id = %d AND meta_key = %s AND meta_id = %d ORDER BY meta_id DESC", $post_id, $meta_key, $meta_id)));
 		}
 	}
 
