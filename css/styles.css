@@ -126,6 +126,17 @@
     font-weight: 700; }
     .story-show .edit-story:hover {
       opacity: 1; }
+  .story-show .delete-story {
+    position: absolute;
+    right: 5px;
+    bottom: 5px;
+    background: none;
+    border: none;
+    opacity: .4;
+    font-weight: 700; }
+    .story-show .delete-story:hover {
+      color: #d84354;
+      opacity: 1; }
 
 .bs-callout-primary {
   border-left-color: #428bca; }
@@ -362,7 +373,7 @@ form p.inline {
     font-weight: 700;
     letter-spacing: 0.3px;
     border-radius: 3px;
-    
+
   }
   .form-guide-content {
     padding: 32px 16px;
