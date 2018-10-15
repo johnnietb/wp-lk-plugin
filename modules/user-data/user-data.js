@@ -19,17 +19,21 @@ jQuery(document).ready(function() {
         var date_diff = Math.abs(current_date - parseDanishDate(isl_date)) / (1000 * 60 * 60);
         var isl_id = jQuery(this).data('id');
         var isl_type = jQuery(this).data('type');
+
+        jQuery(this).append(delete_button);
+        delete_button.click(function() {
+          var deleteConfirm = confirm('Er du sikker?\nSletningen af afsnittet kan ikke fortrydes.');
+          if (deleteConfirm == true) {
+              window.location.href = '?delete=story&date=' + isl_date + '&id=' + isl_id + '&type=' + isl_type;
+          };
+        });
+
         if (date_diff <= 48) {
             jQuery(this).append(edit_button);
             edit_button.click(function() {
                 window.location.href = '?update=story&date=' + isl_date + '&id=' + isl_id + '&type=' + isl_type;
             });
-
         }
-        jQuery(this).append(delete_button);
-        delete_button.click(function() {
-            window.location.href = '?delete=story&date=' + isl_date + '&id=' + isl_id + '&type=' + isl_type;
-        });
     });
 });
 
