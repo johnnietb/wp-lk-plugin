@@ -76,6 +76,8 @@ class Inzite_User_Data
 		add_action('wp_loaded', array($this, 'inzite_profile_update'));
 		add_action('wp_loaded', array($this, 'inzite_profile_story_update'));
 		add_action('wp_loaded', array($this, 'inzite_profile_story_pdf'));
+		add_action('wp_loaded', array($this, 'inzite_profile_story_delete'));
+
 
 		// action to display profile
 		add_action('inzite_profile_viewer', array($this, 'inzite_profile_viewer'));
@@ -398,15 +400,6 @@ class Inzite_User_Data
 								1
 							);
 						}
-					} else if (isset($_GET['delete'])) {
-							$this->inzite_profile_story_delete(
-								$current_user,
-								sanitize_text_field((isset($_GET['date'])) ? $_GET['date'] : ''),
-								sanitize_text_field((isset($_GET['id'])) ? $_GET['id'] : ''),
-								sanitize_text_field((isset($_GET['type'])) ? $_GET['type'] : '')
-							);
-
-						//	wp_redirect(site_url('/profile/' . $user->user_nicename . '/?story=show'));
 					} else if (isset($_GET['chats'])) {
 						$this->inzite_profile_chats($current_user);
 					} else if (isset($_GET['users']) && $user_is_parent > 0) {
@@ -554,7 +547,16 @@ class Inzite_User_Data
 		}
 	}
 
-	function inzite_profile_story_delete($current_user, $date, $meta_id, $type) {
+	function inzite_profile_story_delete() {
+		if (!isset($_GET['delete'])) {
+			return;
+		}
+
+		$date = sanitize_text_field((isset($_GET['date'])) ? $_GET['date'] : '');
+		$meta_id = sanitize_text_field((isset($_GET['id'])) ? $_GET['id'] : '');
+		$type = sanitize_text_field((isset($_GET['type'])) ? $_GET['type'] : '');
+		$current_user = wp_get_current_user();
+
 		if (DateTime::createFromFormat('d-m-Y', $date) === false || intval($meta_id) <= 0 || empty($type)) {
 			return false;
 		}
@@ -574,11 +576,15 @@ class Inzite_User_Data
 		$life_story = reset($life_story);
 		$life_story->ID;
 
-		if ($this->get_meta_with_id($life_story->ID, 'life_story', $meta_id)) {
-			var_dump('life_story', (int) $meta_id);
-			var_dump(delete_metadata_by_mid('life_story', (int) $meta_id));
-			//var_dump( $wpdb->get_results($wpdb->prepare("DELETE FROM $wpdb->postmeta WHERE post_id = %d AND meta_key = %s AND meta_id = %d ORDER BY meta_id DESC", $post_id, $meta_key, $meta_id)));
+		// make sure that the meta id is a life_story meta key, and that its present for this users life_story post page.
+		if (!$this->get_meta_with_id($life_story->ID, 'life_story', $meta_id)) {
+			return false;
 		}
+
+		delete_metadata_by_mid('post', $meta_id);
+
+		wp_redirect(site_url('/profile/' . $current_user->user_nicename . '/?story=show'));
+		exit;
 	}
 
 	function inzite_profile_story_form($current_user, $date = null, $meta_id = null, $type = null, $add)
