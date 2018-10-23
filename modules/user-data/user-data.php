@@ -76,6 +76,8 @@ class Inzite_User_Data
 		add_action('wp_loaded', array($this, 'inzite_profile_update'));
 		add_action('wp_loaded', array($this, 'inzite_profile_story_update'));
 		add_action('wp_loaded', array($this, 'inzite_profile_story_pdf'));
+		add_action('wp_loaded', array($this, 'inzite_profile_story_delete'));
+
 
 		// action to display profile
 		add_action('inzite_profile_viewer', array($this, 'inzite_profile_viewer'));
@@ -441,6 +443,16 @@ class Inzite_User_Data
 		);
 		$life_story = get_posts($args);
 		$story_html = '';
+
+		// if no post was found we setup a new post to store our data on.
+		if (empty($life_story)) {
+			wp_insert_post(array(
+				'author' => $current_user_id,
+				'post_type' => 'life-story',
+				'post_status' => 'publish'
+			));
+		}
+
 		if ($life_story) {
 			$life_story = reset($life_story);
 			$life_story->ID;
@@ -533,6 +545,46 @@ class Inzite_User_Data
 			$totalHours += $dateDiff->h;
 			return $totalHours;
 		}
+	}
+
+	function inzite_profile_story_delete() {
+		if (!isset($_GET['delete'])) {
+			return;
+		}
+
+		$date = sanitize_text_field((isset($_GET['date'])) ? $_GET['date'] : '');
+		$meta_id = sanitize_text_field((isset($_GET['id'])) ? $_GET['id'] : '');
+		$type = sanitize_text_field((isset($_GET['type'])) ? $_GET['type'] : '');
+		$current_user = wp_get_current_user();
+
+		if (DateTime::createFromFormat('d-m-Y', $date) === false || intval($meta_id) <= 0 || empty($type)) {
+			return false;
+		}
+
+		global $wpdb;
+
+		$args = array(
+			'author' => $current_user->ID,
+			'post_type' => 'life-story',
+			'posts_per_page' => 1
+		);
+
+		if (!$life_story = get_posts($args)) {
+			return false;
+		}
+
+		$life_story = reset($life_story);
+		$life_story->ID;
+
+		// make sure that the meta id is a life_story meta key, and that its present for this users life_story post page.
+		if (!$this->get_meta_with_id($life_story->ID, 'life_story', $meta_id)) {
+			return false;
+		}
+
+		delete_metadata_by_mid('post', $meta_id);
+
+		wp_redirect(site_url('/profile/' . $current_user->user_nicename . '/?story=show'));
+		exit;
 	}
 
 	function inzite_profile_story_form($current_user, $date = null, $meta_id = null, $type = null, $add)
