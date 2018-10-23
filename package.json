@@ -1,6 +1,6 @@
 {
   "name": "wp-lk-plugin",
-  "version": "2.0.1",
+  "version": "2.1.0",
   "description": "Create story line items within: _wp-lk-plugin/modules/story-line/_",
   "main": "gulpfile.js",
   "dependencies": {

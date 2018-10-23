@@ -4,10 +4,10 @@ Plugin Name: Inzite User Data
 Plugin URI: http://inzite.dk
 Description: Adds extra user fields/data
 Author: Johnnie Bertelsen
-Version: 2.0.1
+Version: 2.1.0
  */
 
-define('BUNDLE_VERSION', '2.0.1');
+define('BUNDLE_VERSION', '2.1.0');
 define('MY_PLUGIN_PATH', plugin_dir_path(__FILE__));
 define('MY_PLUGIN_URL', plugin_dir_url(__FILE__));
 
