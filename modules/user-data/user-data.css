@@ -23,10 +23,6 @@
     margin: 10px 0 0 0;
 }
 
-body.role-subscriber .admin-only {
-    display: none !important;
-}
-
 .story-upload {
     border: 1px solid #eee;
     border-bottom: 0;

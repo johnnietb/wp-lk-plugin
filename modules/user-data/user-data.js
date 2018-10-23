@@ -20,7 +20,7 @@ jQuery(document).ready(function() {
             '<button class="edit-story"><i class="fa fa-pencil" aria-hidden="true"></i> Rediger</button>'
         );
         var delete_button = jQuery(
-            '<button class="delete-story admin-only"><i class="fa fa-times" aria-hidden="true"></i> Slet</button>'
+            '<button class="delete-story"><i class="fa fa-times" aria-hidden="true"></i> Slet</button>'
         );
         var current_date = Date.now();
         var isl_date = jQuery(this).data("date");
